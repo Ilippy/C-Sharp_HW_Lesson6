@@ -20,19 +20,30 @@ internal partial class Program
     static void ShowCoordinates(double b1, double b2, double k1, double k2)
     {
         Console.Clear();
+        string result;
+        if (isParallel(k1, k2)) result = "линии параллельны";
+        else
+        {
+            double x = FindX(b1, b2, k1, k2);
+            double y = FindY(b1, b2, k1, k2);
+            result = $"{x}; {y}";
+        }
         System.Console.WriteLine("Заданное уравнение y = k1 * x + b1, y = k2 * x + b2");
-        System.Console.WriteLine($"b1 = {b1}, k1 = {k1}, b2 = {b2}, k2 = {k2} -> ({FindX(b1, b2, k1, k2)}; {FindY(b1, b2, k1, k2)})");
+        System.Console.WriteLine($"b1 = {b1}, k1 = {k1}, b2 = {b2}, k2 = {k2} -> ({result})");
     }
 
     static double FindX(double b1, double b2, double k1, double k2)
     {
-        if (k1 - k2 == 0) return 0;
         return (b2 - b1) / (k1 - k2);
     }
 
     static double FindY(double b1, double b2, double k1, double k2)
     {
-        if (k1 - k2 == 0) return 0;
         return k1 * ((b2 - b1) / (k1 - k2)) + b1;
+    }
+
+    static bool isParallel(double k1, double k2)
+    {
+        return k1 == k2;
     }
 }
