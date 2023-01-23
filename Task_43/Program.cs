@@ -25,7 +25,7 @@ internal partial class Program
         else
         {
             double x = FindX(b1, b2, k1, k2);
-            double y = FindY(b1, b2, k1, k2);
+            double y = FindY(k1, b1, x);
             result = $"{x}; {y}";
         }
         System.Console.WriteLine("Заданное уравнение y = k1 * x + b1, y = k2 * x + b2");
@@ -37,9 +37,9 @@ internal partial class Program
         return (b2 - b1) / (k1 - k2);
     }
 
-    static double FindY(double b1, double b2, double k1, double k2)
+    static double FindY(double k1, double b1, double x)
     {
-        return k1 * ((b2 - b1) / (k1 - k2)) + b1;
+        return k1 * x + b1;
     }
 
     static bool isParallel(double k1, double k2)
